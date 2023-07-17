@@ -1,9 +1,9 @@
 import { api } from "~/utils/api";
-import InfiniteTweetList from "./InfiniteTweetList";
+import InfiniteTweetList from "~/components/InfiniteTweetList";
 
-const RecentTweets = () => {
+const FollowingTweets = () => {
   const tweets = api.tweet.infiniteFeed.useInfiniteQuery(
-    {},
+    { onlyFollowing: true },
     { getNextPageParam: (lastPage) => lastPage.nextCursor }
   );
 
@@ -18,4 +18,4 @@ const RecentTweets = () => {
   );
 };
 
-export default RecentTweets;
+export default FollowingTweets;

@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import NewTweetForm from "~/components/NewTweetForm";
 import RecentTweets from "~/components/RecentTweets";
+import FollowingTweets from "~/components/FollowingTweets";
 
 const TABS = ["Recent", "Following"] as const;
 
@@ -37,7 +38,7 @@ const Home: NextPage = () => {
         )}
       </header>
       <NewTweetForm />
-      <RecentTweets />
+      {selectedTab === TABS[0]? (<RecentTweets />) : (<FollowingTweets />)}
     </>
   );
 };

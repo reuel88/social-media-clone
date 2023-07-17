@@ -1,5 +1,7 @@
+import type { ReactNode } from "react";
+
 type IconHoverEffectProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   red?: boolean;
 };
 
@@ -9,7 +11,9 @@ const IconHoverEffect = ({ children, red = false }: IconHoverEffectProps) => {
     : "outline-gray-400 hover:bg-gray-200 group-hover:bg-gray-200 group-focus-visible:bg-gray-200 focus-visible:bg-gray-200";
 
   return (
-    <div className={`rounded-full p-2 transition-colors duration-200 ${colorClass}`}>
+    <div
+      className={`rounded-full p-2 transition-colors duration-200 ${colorClass}`}
+    >
       {children}
     </div>
   );
