@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { Prisma } from "@prisma/client/extension";
+import { Prisma } from "@prisma/client";
 import {
   type createTRPCContext,
   createTRPCRouter,
@@ -75,13 +75,10 @@ export const tweetRouter = createTRPCRouter({
     .input(z.object({ content: z.string() }))
     .mutation(async ({ input: { content }, ctx }) => {
       const tweet = await ctx.prisma.tweet.create({
-        data: {
-          content,
-          userId: ctx.session.user.id,
-        },
+        data: { content, userId: ctx.session.user.id,},
       });
 
-      void ctx.revalidateSSG?.(`/profile/${ctx.session.user.id}`)
+      void ctx.revalidateSSG?.(`/profile/${ctx.session.user.id}`);
 
       return tweet;
     }),
